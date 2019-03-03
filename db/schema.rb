@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190301221301) do
+ActiveRecord::Schema.define(version: 20190303221115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "experiments", force: :cascade do |t|
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_experiments_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -23,9 +33,13 @@ ActiveRecord::Schema.define(version: 20190301221301) do
     t.string "email"
     t.string "password_digest"
     t.integer "role", default: 0
-    t.integer "activation_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["location"], name: "index_users_on_location"
+    t.index ["state"], name: "index_users_on_state"
   end
 
+  add_foreign_key "experiments", "users"
 end
