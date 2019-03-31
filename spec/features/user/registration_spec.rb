@@ -22,6 +22,27 @@ RSpec.describe 'when authenticating visitors' do
       expect(page).to have_content("Thank you for registering! You are now logged in.")
     end
 
+    it "can't register with incomplete credentials" do
+      expect(User.count).to eq(0)
+
+      visit register_path
+
+      fill_in :user_name, with: "user_2"
+      #fill_in :user_email, with: "user_1@email.com"
+      #fill_in :user_location, with: "1111 Street Dr."
+      #fill_in :user_state, with: "CO"
+      #fill_in :user_password, with: "test"
+      #fill_in :user_password_confirmation, with: "test"
+
+      click_on "Create User"
+
+      expect(page).to have_content("Email can't be blank")
+      expect(page).to have_content("Password can't be blank")
+      expect(page).to have_content("Location can't be blank")
+      expect(page).to have_content("State can't be blank")
+      expect(User.count).to eq(0)
+    end
+
     it "can't register with an existing email address" do
       existing_user = create(:user, name: "existing",
                            email: "user_1@email.com",
