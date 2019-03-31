@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    render file: "/public/404" unless current_admin?
+    render file: 'errors/not_found', status: 404 unless current_admin?
   end
 
   def require_current_user
-      render file: "/public/404", status: :not_found unless current_researcher?
+    render file: 'errors/not_found', status: 404 unless current_researcher?
   end
 end

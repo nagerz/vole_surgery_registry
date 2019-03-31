@@ -40,7 +40,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-
   describe 'Class Methods' do
     before :each do
     end

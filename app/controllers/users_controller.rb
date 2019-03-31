@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show, :edit]
   before_action :require_current_user, only: [:show, :edit]
 
 	def new
@@ -33,16 +32,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :location, :state, :password_confirmation)
   end
 
-  def require_login
-    unless logged_in?
-      flash[:error] = "The page you were looking for doesn't exist."
-      redirect_to 'public/404'
-    end
-  end
-
-  def logged_in?
-    if session[:user_id]
-      true
-    end
-  end
 end

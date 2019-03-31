@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         flash[:alert] = "You have been logged in."
         direct_to(user)
-
       else
         flash[:alert] = "This account has been disabled. Please contact an administrator for help."
         render :new
