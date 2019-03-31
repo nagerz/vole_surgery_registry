@@ -9,11 +9,16 @@
   </head>
 
   <body>
-    <!---Flash--->
-    <% flash.each do |type, message| %>
-      <%= content_tag :div, message, class: "flash" %>
-    <% end %>
+    <%= render '/layouts/title' %>
+    <%= render '/layouts/nav' %>
 
-    <%= yield %>
+    <!---Flash--->
+    <div class="container" id="body-content-no-nav">
+      <% flash.each do |flash_type, flash_message| %>
+      <div class="alert alert-<%= flash_type %>" role="alert"><%= flash_message %></div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

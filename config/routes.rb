@@ -15,7 +15,10 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboard#show', as: "dashboard"
 
-  resources :users, only: [:create, :update]
+  resources :users, only: [:create, :update] do
+    resources :experiments, only: [:show, :index]
+    resources :voles, only: [:show, :index]
+  end
 
   #------------Admin User---------------
   namespace :admin do
@@ -24,5 +27,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :dashboard, only: [:show]
   end
+
+  resources :experiments, only: [:show, :index]
+  resources :voles, only: [:show, :index]
 
 end
