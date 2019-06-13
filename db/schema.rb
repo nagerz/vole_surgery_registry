@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190613213220) do
+ActiveRecord::Schema.define(version: 20190613215340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cages", force: :cascade do |t|
-    t.string "status"
     t.string "species"
     t.integer "card_id"
     t.string "cage_id"
@@ -26,6 +25,7 @@ ActiveRecord::Schema.define(version: 20190613213220) do
     t.date "pair_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
   end
 
   create_table "experiment_voles", force: :cascade do |t|
