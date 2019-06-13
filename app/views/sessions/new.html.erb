@@ -1,0 +1,36 @@
+<section class="login-page">
+
+  <h1>Welcome to the Vole Surgery Registry</h1>
+
+  <container class='login'>
+      <div class="login-form">
+        <h1>Please Log In</h1>
+        <%= form_tag login_path do %>
+          <div class="label-input">
+            <%= label_tag :email %>
+            <br>
+            <%= text_field_tag :email, nil, required: true %>
+          </div>
+          <div class="label-input">
+            <%= label_tag :password %>
+            <br>
+            <%= password_field_tag :password, nil, required: true %>
+          </div>
+          <br>
+          <div class="label-input">
+            <%= submit_tag "Log In" %>
+          </div>
+          <br>
+        <% end %>
+
+        <nav class='link'>
+          <h5>New? Please <%= link_to "Register", register_path %> </h5>
+        </nav>
+
+      </div>
+  </container>
+</section>
+
+<footer>
+  <h4>|  Site by <%= link_to "Zach Nager", 'https://github.com/nagerz' %>  |</h4>
+</footer>
