@@ -3,10 +3,7 @@ require 'rails_helper'
 RSpec.describe 'when authenticating visitors' do
   context 'a user trying to register' do
     it 'can register by providing all required info' do
-      visit login_path
-      click_on "Register"
-
-      expect(current_path).to eq(register_path)
+      visit register_path
 
       fill_in :user_name, with: "user_1"
       fill_in :user_location, with: "1111 Street Dr."
