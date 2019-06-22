@@ -10,15 +10,28 @@
 
   <body>
     <%= render '/layouts/title' %>
-    <%= render '/layouts/nav' %>
+    <% if current_user.nil? %>
+      <%= render '/layouts/visitor_nav' %>
+    <% else %>
+      <%= render '/layouts/user_nav' %>
+    <% end %>
 
     <!---Flash--->
     <div class="container" id="body-content-no-nav">
       <% flash.each do |flash_type, flash_message| %>
-      <div class="alert alert-<%= flash_type %>" role="alert"><%= flash_message %></div>
+        <div class="alert alert-<%= flash_type %>" role="alert"><%= flash_message %></div>
       <% end %>
 
       <%= yield %>
     </div>
+
+    <footer>
+      <% if current_user.nil? %>
+        <h4>|  Site by <%= link_to "Zach Nager", 'https://github.com/nagerz' %>  |</h4>
+      <% else %>
+        <h4>|  Site by <%= link_to "Zach Nager", 'https://github.com/nagerz' %>  |  <%= link_to 'About', about_path %>  |</h4>
+      <% end %>
+    </footer>
+
   </body>
 </html>
