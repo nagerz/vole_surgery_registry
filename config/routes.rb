@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+  get '/about', to: 'about#show'
+
   #------------User---------------
   get '/register', to: 'users#new'
   scope :profile, as: :profile do
