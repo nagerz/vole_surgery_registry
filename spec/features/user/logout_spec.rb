@@ -17,8 +17,8 @@ RSpec.describe 'Log out workflow', type: :feature do
     expect(current_path).to eq(login_path)
 
     within '.navbar' do
-      expect(page).to have_link('Log in')
-      expect(page).to_not have_link('Log out')
+      expect(page).to have_link('Log In')
+      expect(page).to_not have_link('Log Out')
     end
   end
 end
