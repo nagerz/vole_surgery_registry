@@ -10,14 +10,15 @@ RSpec.describe 'Log out workflow', type: :feature do
     click_button 'Log In'
     expect(current_path).to eq(dashboard_path)
 
-    #within '.navbar-right' do
+    within '.navbar' do
       click_link 'Log Out'
-    #end
+    end
 
     expect(current_path).to eq(login_path)
-    # within '.navbar-right' do
-    #   expect(page).to have_link('Log in')
-    #   expect(page).to_not have_link('Log out')
-    # end
+
+    within '.navbar' do
+      expect(page).to have_link('Log in')
+      expect(page).to_not have_link('Log out')
+    end
   end
 end
