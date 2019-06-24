@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
     if user.researcher?
       redirect_to dashboard_path
     elsif user.admin?
-      redirect_to admin_dashboard_path(user)
+      redirect_to admin_dashboard_path
     end
   end
 
@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
       flash[:alert] = "You are aleady logged in."
     elsif current_admin?
-      redirect_to admin_dashboard_path(current_user)
+      redirect_to admin_dashboard_path
       flash[:alert] = "You are aleady logged in."
     end
   end

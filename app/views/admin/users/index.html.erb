@@ -1,0 +1,11 @@
+  <section class="users-index">
+    <h1>All Researchers:</h1>
+    <% @users.each do |user| %>
+      <section id="user-<%= user.id %>" >
+        <p>Name: <%= link_to user.name, admin_user_path(user) %></p>
+        <p>Voles checked out: </p>
+      </section>
+    <% end %>
+  </section>
+
+</section>

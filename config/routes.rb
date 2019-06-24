@@ -24,10 +24,10 @@ Rails.application.routes.draw do
 
   #------------Admin User---------------
   namespace :admin do
+    get '/dashboard', to: 'dashboard#show', as: "dashboard"
     put '/users/:id/enable', to: 'users#enable', as: :enable_user
     put '/users/:id/disable', to: 'users#disable', as: :disable_user
     resources :users, only: [:index, :show, :edit, :update]
-    resources :dashboard, only: [:show]
   end
 
   resources :experiments, only: [:show, :index]

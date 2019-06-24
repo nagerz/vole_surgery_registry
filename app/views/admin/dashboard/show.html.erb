@@ -6,4 +6,14 @@
     <p>Email: <%= @user.email %></p>
     <p>Role: <%= @user.role %></p>
   </section>
+
+  <section class="voles-index">
+    <h1>Voles:</h1>
+    <% @voles.each do |vole| %>
+      <section id="vole-<%= vole.id %>" >
+        <p>Vole ID: <%= vole.id %></p>
+      </section>
+    <% end %>
+  </section>
+
 </section>

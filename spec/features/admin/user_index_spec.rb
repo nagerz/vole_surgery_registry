@@ -54,7 +54,7 @@ RSpec.describe 'User index page' do
       @users.each do |user|
         within "#user-#{user.id}" do
           expect(page).to have_link(user.name)
-          expect(page).to have_content("Voles checked out: ")
+          expect(page).to have_content("Voles checked out:")
         end
       end
     end
