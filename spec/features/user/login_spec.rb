@@ -18,7 +18,7 @@ RSpec.describe 'login workflow', type: :feature do
         if @user.researcher?
           expect(current_path).to eq(dashboard_path)
         elsif @user.admin?
-          expect(current_path).to eq(admin_dashboard_path(@user))
+          expect(current_path).to eq(admin_dashboard_path)
         end
       end
     end
@@ -83,7 +83,7 @@ RSpec.describe 'login workflow', type: :feature do
         if @user.researcher?
           expect(current_path).to eq(dashboard_path)
         elsif @user.admin?
-          expect(current_path).to eq(admin_dashboard_path(@user))
+          expect(current_path).to eq(admin_dashboard_path)
         end
       end
     end
