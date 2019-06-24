@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin dashboard page' do
+RSpec.describe 'User index page' do
   feature 'As an admin visiting the admin dashboard' do
     before :each do
       @user1 = User.create!(name: "User 1",
@@ -28,6 +28,7 @@ RSpec.describe 'Admin dashboard page' do
                            password: "test",
                            password_confirmation: "test",
                            role: 1)
+      @users = [@user1, @user2, @user3, @admin]
     end
     scenario 'can see all voles' do
       login_as(@admin)
@@ -47,16 +48,25 @@ RSpec.describe 'Admin dashboard page' do
       click_on 'Researchers'
 
       expect(current_path).to eq(admin_users_path)
+
+      expect(page).to have_content("All Researchers:")
+
+      @users.each do |user|
+        within "#user-#{user.id}" do
+          expect(page).to have_link(user.name)
+          expect(page).to have_content("Voles checked out: ")
+        end
+      end
     end
   end
 
-  feature 'As a regular user visiting the admin dashboard' do
+  feature 'As a regular user visiting the user index' do
     scenario 'sees a 404 error' do
       user = create(:user)
 
       allow_any_instance_of(Admin::BaseController).to receive(:current_user).and_return(user)
 
-      visit '/admin/dashboard'
+      visit admin_users_path
 
       expect(page).to have_content("The page you're looking for could not be found.")
     end
